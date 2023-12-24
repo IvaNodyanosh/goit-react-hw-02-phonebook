@@ -4,6 +4,8 @@ import { ContactForm } from "./contactForm/contactForm";
 import { Filter } from "./filter/filter";
 import { ContactList } from "./contactList/contactList";
 
+import css from "./app.module.css"
+
 
 export class App extends Component{
   state = {
@@ -41,16 +43,19 @@ export class App extends Component{
     const {contacts, filter} = this.state
     const filterObjects = contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));  
     return (
-      <>
-        <h1>Phonebook</h1>
+      <div className={css.container}>
+        <h1 className={css.phonebook__header}>Phonebook</h1>
 
         <ContactForm formSubmit={this.formSubmit} />
-        <h2>Contacts</h2>
+        <h2 className={css.phonebook__title}>Contacts</h2>
         <Filter changeInput={this.changeInput} filter={filter} />
         <ContactList filterObjects={filterObjects} deleteContact={this.deleteContact} />
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600;800&display=swap');
+        </style>
 
 
-    </>
+    </div>
     );
   };
 };
